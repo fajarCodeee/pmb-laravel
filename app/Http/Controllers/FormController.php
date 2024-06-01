@@ -179,20 +179,7 @@ class FormController extends Controller
 
         $request->session()->forget('pmb');
 
-        // return redirect()->route('form.pendaftaran.result')->with(
-        //     [
-        //         'formId' => $formId
-        //     ]
-        // );
         return redirect()->to('/form/p/' . $formId);
-    }
-
-    public function resultForm()
-    {
-        $formId = session('formId');
-        $dataResult = FormPendaftaran::findOrFail($formId);
-
-        return view('formPendaftaran.result', compact('dataResult'));
     }
 
     public function showForm($id)

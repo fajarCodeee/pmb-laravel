@@ -32,3 +32,106 @@
 <script src="{{ asset('adminlte') }}/plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- Toastr -->
 <script src="{{ asset('adminlte') }}/plugins/toastr/toastr.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '.accept', function() {
+            // Menampilkan SweetAlert untuk konfirmasi
+            // console.log($(this).data('id'));
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Anda akan melakukan perubahan pada data ini!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, lanjutkan!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    // console.log('User chose to update data.');
+                    var dataId = $(this).data('id');
+
+                    $.ajax({
+                        url: '/admin/update-status/pmb/' + dataId,
+                        type: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function(response) {
+                            // console.log(response.message);
+
+                            Swal.fire({
+                                title: 'Berhasil!',
+                                text: response.message,
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    // Reload halaman
+                                    location.reload();
+                                }
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error:', error);
+                            Swal.fire('Oops...',
+                                'Terjadi kesalahan saat melakukan peribahan.',
+                                'error');
+                        }
+                    });
+                }
+            });
+        });
+
+        $(document).on('click', '.reject', function() {
+            // Menampilkan SweetAlert untuk konfirmasi
+            // console.log($(this).data('id'));
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Anda akan melakukan perubahan pada data ini!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, lanjutkan!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    // console.log('User chose to update data.');
+                    var dataId = $(this).data('id');
+
+                    $.ajax({
+                        url: '/admin/reject/pmb/' + dataId,
+                        type: 'PUT',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function(response) {
+                            // console.log('Update successful');
+
+                            Swal.fire({
+                                title: 'Berhasil!',
+                                text: response.message,
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    // Reload halaman
+                                    location.reload();
+                                }
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error:', error);
+                            Swal.fire('Oops...',
+                                'Terjadi kesalahan saat melakukan perubahan.',
+                                'error');
+                        }
+                    });
+                }
+            });
+        });
+    });
+</script>

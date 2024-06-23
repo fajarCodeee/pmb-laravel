@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('form_pendaftarans', function (Blueprint $table) {
-            // $table->id();
+        Schema::create('mahasiswa_barus', function (Blueprint $table) {
             $table->uuid('id')->primary();
             // $table->string('users_id');
             $table->foreignId('prodi_id')->constrained('prodis')->onDelete('cascade');
             $table->foreignId('kelas_id')->constrained('kelas')->onDelete('cascade');
+            $table->bigInteger('nim');
             $table->string('namaLengkap');
             $table->string('tempatLahir');
             $table->string('tanggalLahir');
@@ -73,6 +73,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('form_pendaftarans');
+        Schema::dropIfExists('mahasiswa_barus');
     }
 };

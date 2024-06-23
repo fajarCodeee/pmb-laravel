@@ -17,4 +17,9 @@ class Kelas extends Model
     {
         return $this->hasMany(FormPendaftaran::class);
     }
+
+    public function mahasiswaBaru()
+    {
+        return $this->hasMany(MahasiswaBaru::class);
+    }
 }

@@ -28,11 +28,10 @@
                             <thead>
                                 <tr>
                                     <th>Nama</th>
-                                    <th>NIK</th>
-                                    <th>NISN</th>
-                                    <th>Alamat</th>
-                                    <th>Tanggal Lahir</th>
-                                    <th>Jenis Kelamin</th>
+                                    <th>NIM</th>
+                                    <th>Prodi</th>
+                                    <th>Kelas</th>
+                                    <th>Email</th>
                                     <th>WhatsApp</th>
                                     <th>Status</th>
                                     <th>Aksi</th>
@@ -41,16 +40,11 @@
                             <tbody>
                                 @forelse ($mahasiswa as $mhs)
                                     <tr>
-                                        <td>
-                                            {{ $mhs->namaLengkap }}
-                                        </td>
-                                        <td>
-                                            {{ $mhs->nik }}
-                                        </td>
-                                        <td>{{ $mhs->nisn }}</td>
-                                        <td>{{ $mhs->jalan . ', ' . $mhs->kelurahan }}</td>
-                                        <td>{{ $mhs->tanggalLahir }}</td>
-                                        <td>{{ $mhs->jenisKelamin == 'L' ? 'Laki - laki' : 'Perempuan' }}</td>
+                                        <td>{{ $mhs->namaLengkap }}</td>
+                                        <td>{{ $mhs->nim }}</td>
+                                        <td>{{ $mhs->prodi->namaProdi }}</td>
+                                        <td>{{ $mhs->kelas->namaKelas . ' - ' . $mhs->kelas->waktu }}</td>
+                                        <td>{{ $mhs->email }}</td>
                                         <td>{{ $mhs->nomerWhatsapp }}</td>
                                         <td>
                                             @if ($mhs->status == null || $mhs->status == 0)

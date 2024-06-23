@@ -39,6 +39,15 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ url('admin/daftar-mahasiswa') }}"
+                        class="nav-link <?= $title == 'Daftar Mahasiswa' ? 'active' : '' ?>">
+                        <i class="nav-icon fas fa-user-graduate"></i>
+                        <p>
+                            Daftar Mahasiswa
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-header">Informasi PMB</li>
                 <li class="nav-item">
                     <a href="{{ url('/admin/gelombang-pendaftaran') }}"

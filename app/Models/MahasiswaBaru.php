@@ -6,10 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class FormPendaftaran extends Model
+class MahasiswaBaru extends Model
 {
-    use HasFactory;
-
     protected $keyTable = 'string';
 
     public $incrementing = false;
@@ -27,7 +25,6 @@ class FormPendaftaran extends Model
         });
     }
 
-    // relasi dengan tabel kelas
     public function kelas()
     {
         return $this->belongsTo(Kelas::class);

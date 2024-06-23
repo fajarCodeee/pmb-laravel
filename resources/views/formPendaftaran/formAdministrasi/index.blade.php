@@ -4,11 +4,16 @@
     <div class="card border-0 shadow-sm rounded-md mt-4">
         {{-- Content --}}
         <div class="card-body">
-            @if (session()->has('success'))
-                <div class="alert alert-success">
-                    {{ session()->get('success') }}
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
                 </div>
             @endif
+
             <h3 class="text-center mb-3"> Upload Dokumen</h3>
             <hr>
             <form action="{{ route('post.pendaftaran.administrasi') }}" method="POST" enctype="multipart/form-data">

@@ -16,6 +16,11 @@ class Prodi extends Model
 
     public function formPendaftaran()
     {
-        return $this->hasMany(FormPendaftaran::class);
+        return $this->hasMany(FormPendaftaran::class, 'prodi_id');
+    }
+
+    public function mahasiswaBaru()
+    {
+        return $this->hasMany(MahasiswaBaru::class);
     }
 }

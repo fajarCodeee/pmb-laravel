@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\DataSoalController;
 use App\Http\Controllers\Admin\DataUjianController;
 use App\Http\Controllers\Admin\GelombangPendaftaranController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\MahasiswaController;
 use App\Http\Controllers\FormController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,10 +29,11 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('/', [HomeController::class, 'index']);
 
-
+// admin
 Route::get('/admin/home', [HomeController::class, 'index'])->name('admin.panel.dashboard');
-Route::get('/admin/data-mahasiswa-baru', [DataMahasiswaBaruController::class, 'index']);
 // Gelombang Pendafaran
+Route::get('/admin/data-mahasiswa-baru', [DataMahasiswaBaruController::class, 'index']);
+Route::get('/admin/daftar-mahasiswa', [MahasiswaController::class, 'index']);
 Route::resource('/admin/gelombang-pendaftaran', GelombangPendaftaranController::class);
 // Data Kelas
 Route::resource('admin/data-kelas', DataKelasController::class);
@@ -39,6 +41,18 @@ Route::resource('admin/data-program-studi', DataProdiController::class);
 Route::get('/admin/data-ujian', [DataUjianController::class, 'index']);
 Route::get('/admin/data-soal', [DataSoalController::class, 'index']);
 Route::get('/admin/data-jawaban', [DataJawabanController::class, 'index']);
+
+// update status pmb
+Route::post('/admin/update-status/pmb/{id}', [DataMahasiswaBaruController::class, 'acceptStatus'])->name('admin.update.status.pmb');
+Route::put('/admin/reject/pmb/{id}', [DataMahasiswaBaruController::class, 'rejectStatus'])->name('admin.update.status.pmb');
+
+
+
+
+
+
+
+
 
 // form pendaftaran
 Route::get('/', [FormController::class, 'index'])->name('form.pendaftaran.welcome');

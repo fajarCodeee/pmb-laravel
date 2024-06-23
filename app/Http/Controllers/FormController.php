@@ -162,7 +162,7 @@ class FormController extends Controller
         foreach ($fields as $field) {
             if ($request->hasFile($field)) {
                 $file = $request->file($field);
-                $filename = time() . '_' . $file->getClientOriginalName();
+                $filename = time() . '-' . rand(1, 100000);
                 $path = $file->storeAs('uploads', $filename, 'public');
                 $uploadedFiles[$field] = $path;
             }
@@ -184,7 +184,16 @@ class FormController extends Controller
 
     public function showForm($id)
     {
-        $dataResult = FormPendaftaran::findOrFail($id);
-        return view('formPendaftaran.result', compact('dataResult'));
+        // $dataResult = FormPendaftaran::findOrFail($id);
+        $dataResult = FormPendaftaran::with(['prodi', 'kelas'])->findOrFail($id);
+        $agama = Agama::where('value', $dataResult->agama)->get();
+        // dd(Agama::find($dataResult->agama));
+        // dd(Agama::where('value', $dataResult->agama)->get());
+        // die;
+
+        $biayaPendaftaran = 'xxxxxx';
+        $biayaRegistrasi = 'xxxxxx';
+
+        return view('formPendaftaran.result', compact('dataResult', 'agama', 'biayaPendaftaran', 'biayaRegistrasi'));
     }
 }

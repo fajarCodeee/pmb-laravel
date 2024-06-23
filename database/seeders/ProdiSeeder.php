@@ -17,27 +17,27 @@ class ProdiSeeder extends Seeder
         DB::table('prodis')->insert([
             [
                 'namaProdi' => 'Teknik Informatika',
-                'kodeProdi' => rand(300000, 400000),
+                'kodeProdi' => 32,
                 'gelar' => 'D3',
             ],
             [
                 'namaProdi' => 'Akutansi',
-                'kodeProdi' => rand(300000, 400000),
+                'kodeProdi' => 31,
                 'gelar' => 'D3',
             ],
             [
                 'namaProdi' => 'Administrasi Bisnis',
-                'kodeProdi' => rand(300000, 400000),
+                'kodeProdi' => 33,
                 'gelar' => 'D3',
             ],
             [
                 'namaProdi' => 'Teknologi Rekayasa Perangkat Lunak (TRPL)',
-                'kodeProdi' => rand(300000, 400000),
+                'kodeProdi' => 41,
                 'gelar' => 'D4/S1',
             ],
             [
                 'namaProdi' => 'Bisnis Digital (BD)',
-                'kodeProdi' => rand(300000, 400000),
+                'kodeProdi' => 42,
                 'gelar' => 'D4/S1',
             ],
         ]);

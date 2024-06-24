@@ -23,7 +23,7 @@ class FormPendaftaranSeeder extends Seeder
                 'tempatLahir' => 'Jakarta',
                 'tanggalLahir' => '2000-01-01',
                 'jenisKelamin' => 'L',
-                'agama' => 'Islam',
+                'agama' => '1',
                 'nomerWhatsapp' => '081234567890',
                 'email' => 'budi@example.com',
                 'nik' => '1234567890123456',

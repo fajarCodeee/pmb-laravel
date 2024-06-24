@@ -15,6 +15,7 @@ use App\Models\Pekerjaan;
 use App\Models\Pendidikan;
 use App\Models\Penghasilan;
 use App\Models\Prodi;
+use App\Models\TransaksiPendaftaran;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Http;
@@ -195,5 +196,23 @@ class FormController extends Controller
         $biayaRegistrasi = 'xxxxxx';
 
         return view('formPendaftaran.result', compact('dataResult', 'agama', 'biayaPendaftaran', 'biayaRegistrasi'));
+    }
+
+    public function postTf(Request $request)
+    {
+        $request->validate([
+            'bukti_tf' => 'required',
+            'form_id' => 'required'
+        ], [
+            'bukti_tf.required' => 'Silahkan lampirkan bukti transfer dahulu!'
+        ]);
+
+        $insert = TransaksiPendaftaran::create([
+            'form_id' => $request->form_id,
+            'nama_cmb' => $request->nama_cmb,
+            'bukti_tf' => $request->bukti_tf
+        ]);
+
+        return redirect()->to('/');
     }
 }

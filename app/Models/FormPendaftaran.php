@@ -38,4 +38,9 @@ class FormPendaftaran extends Model
     {
         return $this->belongsTo(Prodi::class);
     }
+
+    public function transaksiPendaftaran()
+    {
+        return $this->hasOne(TransaksiPendaftaran::class);
+    }
 }

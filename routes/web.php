@@ -73,3 +73,4 @@ Route::get('/form-administrasi', [FormController::class, 'formAdministrasi'])->n
 Route::post('/form-administrasi', [FormController::class, 'postFormAdministrasi'])->name('post.pendaftaran.administrasi');
 
 Route::get('/form/p/{id}', [FormController::class, 'showForm']);
+Route::post('form/p/post', [FormController::class, 'postTf'])->name('post.tf');

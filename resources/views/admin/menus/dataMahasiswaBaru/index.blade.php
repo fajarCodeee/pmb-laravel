@@ -61,8 +61,9 @@
                                                 <span class="badge badge-danger">DiTolak</span>
                                             @endif
                                         </td>
-                                        <td><a href="#" class="btn btn-warning btn-sm">Cek Data</a> <button
-                                                type="button" class="btn btn-sm btn-success accept"
+                                        <td><button type="button" class="btn btn-warning btn-sm" id="showDataMahasiswa"
+                                                data-id="{{ $mhs->id }}">Cek
+                                                Data</button> <button type="button" class="btn btn-sm btn-success accept"
                                                 data-id="{{ $mhs->id }}"
                                                 {{ $mhs->status == 1 || $mhs->status == -1 ? 'disabled' : '' }}>Terima</button>
                                             <button type="button" class="btn btn-sm btn-danger reject"
@@ -80,4 +81,118 @@
             </div>
         </div>
     </div>
+    @include('admin.menus.dataMahasiswaBaru._modal');
+@endsection
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', '#showDataMahasiswa', function() {
+                let id = $(this).data('id');
+                // alert(id);
+                $.ajax({
+                    type: "GET",
+                    url: `show-data-cmb/` + id,
+                    success: function(response) {
+                        console.log(response);
+                        // set title
+                        $('.modal-title').html('Data Diri Dari : ' + response.data.namaLengkap);
+
+                        // set data-diri
+                        let namaLengkap = $('#namaLengkap');
+                        namaLengkap.html(response.data.namaLengkap);
+
+                        // membuat tag baru
+                        let nextDataDiri = `
+                        <tr>
+                            <th>NIK</th>
+                            <td>${response.data.nik}</td>
+                        </tr>
+                        <tr>
+                            <th>NISN</th>
+                            <td>${response.data.nisn}</td>
+                        </tr>
+                        <tr>
+                            <th>WhatsApp</th>
+                            <td>${response.data.nomerWhatsapp}</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>${response.data.email}</td>
+                        </tr>
+                        <tr>
+                            <th>Jenis Kelamin</th>
+                            <td>${response.data.jenisKelamin === 'L' ? 'Laki - Laki' : 'Perempuan'}</td>
+                        </tr>
+                        <tr>
+                            <th>Tanggal Lahir</th>
+                            <td>${response.data.tanggalLahir}</td>
+                        </tr>
+                        <tr>
+                            <th>Tempat Lahir</th>
+                            <td>${response.data.tempatLahir}</td>
+                        </tr>
+                        `;
+
+                        // menambahkan tag setelah tag nama
+                        namaLengkap.closest('tr').after(nextDataDiri)
+
+                        const kodeKecamatan = response.data.kecamatan;
+                        const kodeKab = kodeKecamatan.substring(0, 4);
+                        const kodeProv = kodeKab.substring(0, 2);
+                        let namaKecamatan = '';
+                        let namaKabupaten = '';
+
+                        const urlKec =
+                            'https://fajarcodeee.github.io/api-wilayah-indonesia/api/districts/';
+                        const urlKab =
+                            'https://fajarcodeee.github.io/api-wilayah-indonesia/api/regencies/';
+
+                        // get nama kecamatan
+                        $.getJSON(urlKec + kodeKab + '.json',
+                            function(data) {
+                                const json = JSON.stringify(data);
+                                const parseJSON = JSON.parse(json);
+
+                                $.each(parseJSON, function(index, item) {
+                                    if (item.id == kodeKecamatan) {
+                                        namaKecamatan = item.name;
+                                        return false;
+                                    }
+                                });
+                            }
+                        );
+
+                        // get nama kabupaten
+                        $.getJSON(urlKab + kodeProv + '.json',
+                            function(data) {
+                                const json = JSON.stringify(data);
+                                const parseJSON = JSON.parse(json);
+                                // console.log(kodeKab);
+
+                                $.each(parseJSON, function(index, item) {
+                                    // console.log(item.name);
+                                    if (item.id == kodeKab) {
+                                        namaKabupaten = item.name;
+                                        return false
+                                    }
+                                });
+                            }
+                        );
+
+                        // console.log(namaKabupaten);
+
+                        // data alamat
+                        $('#kelurahan').html(response.data.kelurahan);
+                        $('#dusun').html(response.data.dusun);
+                        $('#rt').html(response.data.rt);
+                        $('#rw').html(response.data.rw);
+                        $('#jalan').html(response.data.jalan);
+
+                        $('#modal-lg').modal('show');
+
+                    }
+                });
+            })
+        });
+    </script>
 @endsection

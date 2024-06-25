@@ -45,6 +45,8 @@ Route::get('/admin/data-jawaban', [DataJawabanController::class, 'index']);
 // update status pmb
 Route::post('/admin/update-status/pmb/{id}', [DataMahasiswaBaruController::class, 'acceptStatus'])->name('admin.update.status.pmb');
 Route::put('/admin/reject/pmb/{id}', [DataMahasiswaBaruController::class, 'rejectStatus'])->name('admin.update.status.pmb');
+// lihat detail data calon mahasiswa
+Route::get('admin/show-data-cmb/{id}', [DataMahasiswaBaruController::class, 'showData'])->name('admin.show.data-cmb');
 
 
 

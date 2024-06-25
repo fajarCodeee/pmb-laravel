@@ -30,7 +30,7 @@ class FormPendaftaranSeeder extends Seeder
                 'nisn' => '1234567890',
                 'npwp' => null,
                 'kewarganegaraan' => 'Indonesia',
-                'kecamatan' => 'Kecamatan A',
+                'kecamatan' => '1113010',
                 'kelurahan' => 'Kelurahan B',
                 'dusun' => 'Dusun C',
                 'rt' => '001',

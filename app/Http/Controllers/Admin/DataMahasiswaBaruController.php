@@ -17,7 +17,7 @@ class DataMahasiswaBaruController extends Controller
         $data['username'] = 'Administrator';
         $data['title'] = 'Data Mahasiswa';
 
-        $data['mahasiswa'] = FormPendaftaran::all();
+        $data['mahasiswa'] = FormPendaftaran::latest()->get();
 
         return view('admin.menus.dataMahasiswaBaru.index', $data);
     }
@@ -80,5 +80,17 @@ class DataMahasiswaBaruController extends Controller
         $data->save();
 
         return response()->json(['message' => 'Data ditolak/tidak diterima!']);
+    }
+
+    // menampilkan detail data calon mahasiswa
+    public function showData($id)
+    {
+        $data = FormPendaftaran::findOrFail($id);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Menampilkan data calon mahasiswa',
+            'data' => $data
+        ]);
     }
 }

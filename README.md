@@ -10,5 +10,8 @@ PROJEK PMB POLITEKNIK SAWUNGGALIH AJI
     - username : namaLengkap[camelcase]/email
     - password : string random
 
+- Kirim Email [pending]:
+    - membuat tampilan email
+
 - Buat tampilan untuk CBT [now]
 

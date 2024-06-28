@@ -32,8 +32,14 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', [HomeController::class, 'index']);
 
 // route authentikasi
-Route::get('/login', [LoginController::class, 'index']);
+// login
+Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('proses.login');
+
+// logout
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+
 
 // middleware auth
 /*
@@ -41,40 +47,33 @@ Route::post('/login', [LoginController::class, 'login'])->name('proses.login');
  - cek_login:admin => login admin
 */
 Route::group(['middleware' => ['auth']], function () {
+    // peserta_cbt
     Route::group(['middleware' => ['cek_login:peserta_cbt']], function () {
         // route cbt
         Route::get('/cbt/home', [CbtController::class, 'index']);
     });
+
+    // admin
+    Route::group(['middleware' => ['cek_login:admin']], function () {
+        Route::get('/admin/home', [HomeController::class, 'index'])->name('admin.panel.dashboard');
+        // Gelombang Pendafaran
+        Route::get('/admin/data-mahasiswa-baru', [DataMahasiswaBaruController::class, 'index']);
+        Route::get('/admin/daftar-mahasiswa', [MahasiswaController::class, 'index']);
+        Route::resource('/admin/gelombang-pendaftaran', GelombangPendaftaranController::class);
+        // Data Kelas
+        Route::resource('admin/data-kelas', DataKelasController::class);
+        Route::resource('admin/data-program-studi', DataProdiController::class);
+        Route::get('/admin/data-ujian', [DataUjianController::class, 'index']);
+        Route::get('/admin/data-soal', [DataSoalController::class, 'index']);
+        Route::get('/admin/data-jawaban', [DataJawabanController::class, 'index']);
+
+        // update status pmb
+        Route::post('/admin/update-status/pmb/{id}', [DataMahasiswaBaruController::class, 'acceptStatus'])->name('admin.update.status.pmb');
+        Route::put('/admin/reject/pmb/{id}', [DataMahasiswaBaruController::class, 'rejectStatus'])->name('admin.update.status.pmb');
+        // lihat detail data calon mahasiswa
+        Route::get('admin/show-data-cmb/{id}', [DataMahasiswaBaruController::class, 'showData'])->name('admin.show.data-cmb');
+    });
 });
-
-
-
-// admin
-Route::get('/admin/home', [HomeController::class, 'index'])->name('admin.panel.dashboard');
-// Gelombang Pendafaran
-Route::get('/admin/data-mahasiswa-baru', [DataMahasiswaBaruController::class, 'index']);
-Route::get('/admin/daftar-mahasiswa', [MahasiswaController::class, 'index']);
-Route::resource('/admin/gelombang-pendaftaran', GelombangPendaftaranController::class);
-// Data Kelas
-Route::resource('admin/data-kelas', DataKelasController::class);
-Route::resource('admin/data-program-studi', DataProdiController::class);
-Route::get('/admin/data-ujian', [DataUjianController::class, 'index']);
-Route::get('/admin/data-soal', [DataSoalController::class, 'index']);
-Route::get('/admin/data-jawaban', [DataJawabanController::class, 'index']);
-
-// update status pmb
-Route::post('/admin/update-status/pmb/{id}', [DataMahasiswaBaruController::class, 'acceptStatus'])->name('admin.update.status.pmb');
-Route::put('/admin/reject/pmb/{id}', [DataMahasiswaBaruController::class, 'rejectStatus'])->name('admin.update.status.pmb');
-// lihat detail data calon mahasiswa
-Route::get('admin/show-data-cmb/{id}', [DataMahasiswaBaruController::class, 'showData'])->name('admin.show.data-cmb');
-
-
-
-
-
-
-
-
 
 // form pendaftaran
 Route::get('/', [FormController::class, 'index'])->name('form.pendaftaran.welcome');

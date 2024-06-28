@@ -30,5 +30,6 @@ class DatabaseSeeder extends Seeder
         $this->call(JenisTinggalSeeder::class);
         $this->call(AlatTransportasiSeeder::class);
         $this->call(FormPendaftaranSeeder::class);
+        $this->call(UserSeeder::class);
     }
 }

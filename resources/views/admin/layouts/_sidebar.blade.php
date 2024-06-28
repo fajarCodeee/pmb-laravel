@@ -138,7 +138,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link bg-danger">
+                    <form action="{{ route('logout') }}" method="post" id="logout" class="d-none">
+                        @csrf
+                        @method('POST')
+                    </form>
+                    <a href="#" class="nav-link bg-danger"
+                        onclick="event.preventDefault(); document.getElementById('logout').submit();">
                         <i class="nav-icon fas fa-sign-out-alt"></i>
                         <p>
                             Logout

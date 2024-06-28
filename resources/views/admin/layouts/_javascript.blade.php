@@ -1,3 +1,4 @@
+<script src="{{ asset('adminlte') }}/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <!-- jQuery -->
 <script src="{{ asset('adminlte') }}/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -134,11 +135,7 @@
             });
         });
     });
-</script>
 
-<script src="{{ asset('adminlte') }}/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
-
-<script>
     $(document).ready(function() {
         bsCustomFileInput.init()
     })

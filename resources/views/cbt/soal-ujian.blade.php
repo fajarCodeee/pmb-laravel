@@ -114,7 +114,7 @@
                                 </div>
                             </div>
                             <div class="d-flex mt-5 justify-content-end">
-                                <a href="{{ route('home.soal.ujian') }}"
+                                <a href="{{ route('form.pendaftaran.data-diri') }}"
                                     class="btn btn-md btn-primary text-center px-4"><b>Next >></b></a>
                             </div>
                         </div>

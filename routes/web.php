@@ -51,6 +51,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['cek_login:peserta_cbt']], function () {
         // route cbt
         Route::get('/cbt/home', [CbtController::class, 'index']);
+        Route::get('/cbt/home/soal-ujian', [CbtController::class, 'soalUjian'])->name('home.soal.ujian');
     });
 
     // admin

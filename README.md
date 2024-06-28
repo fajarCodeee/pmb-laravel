@@ -6,6 +6,9 @@ PROJEK PMB POLITEKNIK SAWUNGGALIH AJI
 - jika data di eksekusi [accept], maka akan ada fungsi yang melakukan geneted akun untuk calon mahasiswa login ke CBT dan mengirimkan pemberitahuan ke calon mahasiswa melalui wa/email. 
 - jika data di eksekusi [reject], maka fungsi akan mengirimkan pemberitahuan berupa email/wa jika pendaftaran gagal
 
-- FORMAT AKUN : 
-    - username : [alamat_email]
+- FORMAT AKUN [solved]: 
+    - username : namaLengkap[camelcase]/email
     - password : string random
+
+- Buat tampilan untuk CBT [now]
+

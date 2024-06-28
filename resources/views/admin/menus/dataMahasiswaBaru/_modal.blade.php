@@ -11,80 +11,69 @@
                 {{-- data diri --}}
                 <div class="row">
                     <div class="col-12">
-                        <div class="card">
-                            {{-- <div class="card-header">
-                                <h3 class="card-title">Expandable Table Tree</h3>
-                            </div> --}}
-                            <!-- ./card-header -->
-                            <div class="card-body p-0">
-                                <table class="table table-hover">
-                                    <tbody>
-                                        <tr data-widget="expandable-table" aria-expanded="false" data-name="data-diri">
-                                            <td class="font-weight-bolder">
-                                                <i class="expandable-table-caret fas fa-caret-right fa-fw"></i>
-                                                Data Diri
-                                            </td>
-                                        </tr>
-                                        <tr class="expandable-body">
-                                            <td>
-                                                <div class="p-0">
-                                                    <table class="table table-hover">
-                                                        <tbody>
-                                                            <tr>
-                                                                <th>Nama Lengkap</th>
-                                                                <td id="namaLengkap"></td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr data-widget="expandable-table" aria-expanded="false" data-name="alamat">
-                                            <td class="font-weight-bolder">
-                                                <i class="expandable-table-caret fas fa-caret-right fa-fw"></i>
-                                                Alamat
-                                            </td>
-                                        </tr>
-                                        <tr class="expandable-body">
-                                            <td>
-                                                <div class="p-0">
-                                                    <table class="table table-hover">
-                                                        <tbody>
-                                                            <tr>
-                                                                <th>Jalan</th>
-                                                                <td id="jalan"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>Desa</th>
-                                                                <td id="kelurahan"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>Dusun</th>
-                                                                <td id="dusun"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>RT</th>
-                                                                <td id="rt"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>RW</th>
-                                                                <td id="rw"></td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                        <div class="accordion" id="accordionExample">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link btn-block text-left" type="button"
+                                            data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                                            aria-controls="collapseOne">
+                                            Collapsible Group Item #1
+                                        </button>
+                                    </h2>
+                                </div>
+
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                    data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        Some placeholder content for the first accordion panel. This panel is
+                                        shown by default, thanks to the <code>.show</code> class.
+                                    </div>
+                                </div>
                             </div>
-                            <!-- /.card-body -->
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link btn-block text-left collapsed" type="button"
+                                            data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                                            aria-controls="collapseTwo">
+                                            Collapsible Group Item #2
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                    data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        Some placeholder content for the second accordion panel. This panel is
+                                        hidden by default.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingThree">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link btn-block text-left collapsed" type="button"
+                                            data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
+                                            aria-controls="collapseThree">
+                                            Collapsible Group Item #3
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                    data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        And lastly, the placeholder content for the third and final accordion
+                                        panel. This panel is hidden by default.
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <!-- /.card -->
                     </div>
+                    <!-- /.card-body -->
                 </div>
-                <!-- /.row -->
+                <!-- /.card -->
             </div>
+
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary">Save changes</button>

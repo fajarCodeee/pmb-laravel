@@ -25,7 +25,7 @@ class FormPendaftaranSeeder extends Seeder
                 'jenisKelamin' => 'L',
                 'agama' => '1',
                 'nomerWhatsapp' => '081234567890',
-                'email' => 'budi@example.com',
+                'email' => 'bayu23404@gmail.com',
                 'nik' => '1234567890123456',
                 'nisn' => '1234567890',
                 'npwp' => null,

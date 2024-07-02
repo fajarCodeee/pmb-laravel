@@ -48,5 +48,5 @@
             </div>
         </div>
     </div>
-    @include('admin.menus.dataUjian._modal')
+    @include('admin.menus.statistik_cbt._modal')
 @endsection

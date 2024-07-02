@@ -92,29 +92,29 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ url('/admin/data-ujian') }}"
-                                class="nav-link <?= $title == 'Data Ujian' ? 'active' : '' ?>">
+                            <a href="{{ route('statistik.cbt') }}"
+                                class="nav-link <?= $title == 'Statistik CBT' ? 'active' : '' ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>
-                                    Data Ujian
+                                    Statistik CBT
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/admin/data-soal') }}"
-                                class="nav-link <?= $title == 'Data Soal' ? 'active' : '' ?>">
+                            <a href="{{ route('data.peserta') }}"
+                                class="nav-link <?= $title == 'Data Peserta' ? 'active' : '' ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>
-                                    Data Soal
+                                    Data Peserta
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/admin/data-jawaban') }}"
-                                class="nav-link <?= $title == 'Data Jawaban' ? 'active' : '' ?>">
+                            <a href="{{ route('kelola.ujian.cbt') }}"
+                                class="nav-link <?= $title == 'Kelola Ujian CBT' ? 'active' : '' ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>
-                                    Data Jawaban
+                                    Kelola Ujian CBT
                                 </p>
                             </a>
                         </li>

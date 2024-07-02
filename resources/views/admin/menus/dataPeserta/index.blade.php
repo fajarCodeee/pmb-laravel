@@ -48,5 +48,5 @@
             </div>
         </div>
     </div>
-    @include('admin.menus.dataSoal._modal')
+    @include('admin.menus.dataPeserta._modal')
 @endsection

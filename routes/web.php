@@ -1,11 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\CBTController as AdminCBTController;
 use App\Http\Controllers\Admin\DataJawabanController;
 use App\Http\Controllers\Admin\DataKelasController;
 use App\Http\Controllers\Admin\DataMahasiswaBaruController;
 use App\Http\Controllers\Admin\DataProdiController;
 use App\Http\Controllers\Admin\DataSoalController;
-use App\Http\Controllers\Admin\DataUjianController;
 use App\Http\Controllers\Admin\GelombangPendaftaranController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\MahasiswaController;
@@ -64,9 +64,11 @@ Route::group(['middleware' => ['auth']], function () {
         // Data Kelas
         Route::resource('admin/data-kelas', DataKelasController::class);
         Route::resource('admin/data-program-studi', DataProdiController::class);
-        Route::get('/admin/data-ujian', [DataUjianController::class, 'index']);
-        Route::get('/admin/data-soal', [DataSoalController::class, 'index']);
-        Route::get('/admin/data-jawaban', [DataJawabanController::class, 'index']);
+
+        // cbt
+        Route::get('/admin/statistik-cbt', [AdminCBTController::class,  'statistikCbt'])->name('statistik.cbt');
+        Route::get('/admin/data-peserta', [AdminCBTController::class, 'dataPeseta'])->name('data.peserta');
+        Route::get('/admin/kelola-ujain-cbt', [AdminCBTController::class, 'kelolaUjianCbt'])->name('kelola.ujian.cbt');
 
         // update status pmb
         Route::post('/admin/update-status/pmb/{id}', [DataMahasiswaBaruController::class, 'acceptStatus'])->name('admin.update.status.pmb');

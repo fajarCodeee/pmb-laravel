@@ -31,5 +31,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AlatTransportasiSeeder::class);
         $this->call(FormPendaftaranSeeder::class);
         $this->call(UserSeeder::class);
+        $this->call(SoalCBT::class);
     }
 }

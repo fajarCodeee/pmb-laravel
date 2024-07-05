@@ -1,11 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\CBTController as AdminCBTController;
-use App\Http\Controllers\Admin\DataJawabanController;
 use App\Http\Controllers\Admin\DataKelasController;
 use App\Http\Controllers\Admin\DataMahasiswaBaruController;
 use App\Http\Controllers\Admin\DataProdiController;
-use App\Http\Controllers\Admin\DataSoalController;
+use App\Http\Controllers\Admin\DataRekeningController;
 use App\Http\Controllers\Admin\GelombangPendaftaranController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\MahasiswaController;
@@ -68,18 +67,27 @@ Route::group(['middleware' => ['auth']], function () {
         // cbt
         Route::get('/admin/statistik-cbt', [AdminCBTController::class,  'statistikCbt'])->name('statistik.cbt');
         Route::get('/admin/data-peserta', [AdminCBTController::class, 'dataPeseta'])->name('data.peserta');
+
+
         Route::get('/admin/kelola-ujain-cbt', [AdminCBTController::class, 'kelolaUjianCbt'])->name('kelola.ujian.cbt');
+        Route::get('/admin/kelola-ujian-cbt/create-cbt', [AdminCBTController::class, 'create'])->name('kelola-ujian-cbt.create');
+        Route::post('/admin/kelola-ujian-cbt', [AdminCBTController::class, 'store_soal'])->name('kelola-ujian-cbt.store');
+        Route::get('/admin/kelola-ujian-cbt/{id}', [AdminCBTController::class, 'show_soal'])->name('kelola-ujian-cbt.show');
 
         // update status pmb
         Route::post('/admin/update-status/pmb/{id}', [DataMahasiswaBaruController::class, 'acceptStatus'])->name('admin.update.status.pmb');
         Route::put('/admin/reject/pmb/{id}', [DataMahasiswaBaruController::class, 'rejectStatus'])->name('admin.update.status.pmb');
         // lihat detail data calon mahasiswa
         Route::get('admin/show-data-cmb/{id}', [DataMahasiswaBaruController::class, 'showData'])->name('admin.show.data-cmb');
+
+        // menu rekening
+        Route::resource('admin/data-rekening', DataRekeningController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
+        // Route::post('/admin/data-rekening', [DataRekeningController::class, 'store'])->name('data-rekening.store');
     });
 });
 
 // form pendaftaran
-Route::get('/', [FormController::class, 'index'])->name('form.pendaftaran.welcome');
+Route::get('/form-pendaftaran', [FormController::class, 'index'])->name('form.pendaftaran.welcome');
 
 Route::get('/form-data-diri', [FormController::class, 'formDataDiri'])->name('form.pendaftaran.data-diri');
 Route::post('/post-form-data-diri', [FormController::class, 'postDataDiri'])->name('post.data.diri');
@@ -97,4 +105,6 @@ Route::get('/form-administrasi', [FormController::class, 'formAdministrasi'])->n
 Route::post('/form-administrasi', [FormController::class, 'postFormAdministrasi'])->name('post.pendaftaran.administrasi');
 
 Route::get('/form/p/{id}', [FormController::class, 'showForm']);
-Route::post('form/p/post', [FormController::class, 'postTf'])->name('post.tf');
+Route::post('/form/p/post', [FormController::class, 'postTf'])->name('post.tf');
+
+Route::get('/form/pendaftaran/pesan', [FormController::class, 'message']);

@@ -97,45 +97,6 @@
                         // set title
                         $('.modal-title').html('Data Diri Dari : ' + response.data.namaLengkap);
 
-                        // set data-diri
-                        let namaLengkap = $('#namaLengkap');
-                        namaLengkap.html(response.data.namaLengkap);
-
-                        // membuat tag baru
-                        let nextDataDiri = `
-                        <tr>
-                            <th>NIK</th>
-                            <td>${response.data.nik}</td>
-                        </tr>
-                        <tr>
-                            <th>NISN</th>
-                            <td>${response.data.nisn}</td>
-                        </tr>
-                        <tr>
-                            <th>WhatsApp</th>
-                            <td>${response.data.nomerWhatsapp}</td>
-                        </tr>
-                        <tr>
-                            <th>Email</th>
-                            <td>${response.data.email}</td>
-                        </tr>
-                        <tr>
-                            <th>Jenis Kelamin</th>
-                            <td>${response.data.jenisKelamin === 'L' ? 'Laki - Laki' : 'Perempuan'}</td>
-                        </tr>
-                        <tr>
-                            <th>Tanggal Lahir</th>
-                            <td>${response.data.tanggalLahir}</td>
-                        </tr>
-                        <tr>
-                            <th>Tempat Lahir</th>
-                            <td>${response.data.tempatLahir}</td>
-                        </tr>
-                        `;
-
-                        // menambahkan tag setelah tag nama
-                        namaLengkap.closest('tr').after(nextDataDiri)
-
                         const kodeKecamatan = response.data.kecamatan;
                         const kodeKab = kodeKecamatan.substring(0, 4);
                         const kodeProv = kodeKab.substring(0, 2);

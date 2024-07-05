@@ -3,15 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $data['title_page'] = 'Home';
-        $data['username'] = 'Administrator';
-        $data['title'] = 'Dashboard';
+        $title_page = 'Home';
+        $username = Auth::user();
+        $title =  'Dashboard';
 
-        return view('admin.menus.dashboard.index', $data);
+
+
+        return view('admin.menus.dashboard.index', compact('title_page', 'username', 'title'));
     }
 }

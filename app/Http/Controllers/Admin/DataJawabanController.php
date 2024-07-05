@@ -4,15 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DataJawabanController extends Controller
 {
     public function index()
     {
-        $data['title_page'] = 'Data Jawaban';
-        $data['username'] = 'Administrator';
-        $data['title'] = 'Data Jawaban';
+        $title_page = 'Data Jawaban';
+        $username = Auth::user();
+        $title = 'Data Jawaban';
 
-        return view('admin.menus.dataJawaban.index', $data);
+        return view('admin.menus.dataJawaban.index', compact('title_page', 'username', 'title'));
     }
 }

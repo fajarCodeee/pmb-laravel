@@ -87,15 +87,20 @@
                             </p>
                             <p>Berikut adalah informasi administrasi tambahan yang perlu Anda ketahui:</p>
                             <ul>
-                                <li><strong>Biaya Pendaftaran:</strong> Rp. xxx.xxx</li>
+                                <li><strong>Biaya Pendaftaran:</strong> Rp. {{ $biayaPendaftaran->jumlah_administrasi }}
+                                </li>
                                 {{-- <li><strong>Biaya Registrasi:</strong> Rp. 1,000,000</li> --}}
                             </ul>
-                            <p>Anda dapat melakukan pembayaran biaya pendaftaran dengan transfer ke nomer rekening berikut :
+                            <p>Anda dapat melakukan pembayaran biaya pendaftaran dengan transfer ke <strong>salah
+                                    satu</strong> nomer rekening berikut :
                             </p>
+
                             <ul>
-                                <li>
-                                    BNI - xxx xxxx xxxx [Nama Pemilik Rekening]
-                                </li>
+                                {{-- {{ dd($biayaPendaftaran) }} --}}
+                                @foreach ($bank as $pendaftaran)
+                                    <li>{!! '<b>' . $pendaftaran->nama_bank . '</b> - ' . $pendaftaran->no_rekening !!}</li>
+                                @endforeach
+
                             </ul>
                             <p>Lampirkan bukti transfer disini untuk melanjutkan:</p>
                             {{-- form upload bukti --}}
@@ -108,10 +113,14 @@
                                     <div class="custom-file">
                                         <input type="file"
                                             class="custom-file-input {{ $errors->has('bukti_tf') ? 'is-invalid' : '' }}"
-                                            id="bukti_tf" name="bukti_tf">
-                                        <label class="custom-file-label" for="bukti_tf">Choose file</label>
+                                            id="bukti_tf" name="bukti_tf" value="{{ old('bukti_tf') }}">
+                                        <label class="custom-file-label" for="bukti_tf">{{ old('bukti_tf') }}</label>
                                     </div>
                                 </div>
+                                <p class="small text-danger font-weight-semibold">* Anda dapat melakukannya nanti, Kami
+                                    telah
+                                    mengirimkan tautan untuk mengupload
+                                    bukti administrasi melalui email anda</p>
                             </div>
                         </div>
                     </div>
@@ -119,7 +128,7 @@
 
                 {{-- btn next/prevous --}}
                 <div class="d-flex mt-5 justify-content-end">
-                    <button type="submit" class="btn btn-md btn-primary text-center px-4 font-weight-bolder"> Next >>
+                    <button type="submit" class="btn btn-md btn-primary text-center px-4 font-weight-bolder"> Kirim
                     </button>
                 </div>
             </div>

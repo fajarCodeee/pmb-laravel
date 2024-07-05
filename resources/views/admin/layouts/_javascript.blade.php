@@ -33,6 +33,7 @@
 <script src="{{ asset('adminlte') }}/plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- Toastr -->
 <script src="{{ asset('adminlte') }}/plugins/toastr/toastr.min.js"></script>
+
 <script>
     $(document).ready(function() {
         $(document).on('click', '.accept', function() {
@@ -77,7 +78,7 @@
                         error: function(xhr, status, error) {
                             console.error('Error:', error);
                             Swal.fire('Oops...',
-                                'Terjadi kesalahan saat melakukan peribahan.',
+                                'Terjadi kesalahan saat melakukan perubahan.',
                                 'error');
                         }
                     });

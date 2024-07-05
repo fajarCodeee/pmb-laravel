@@ -30,3 +30,4 @@
 <link rel="stylesheet" href="{{ asset('adminlte') }}/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 <!-- Toastr -->
 <link rel="stylesheet" href="{{ asset('adminlte') }}/plugins/toastr/toastr.min.css">
+<script src="https://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>

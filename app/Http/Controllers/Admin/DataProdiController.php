@@ -5,17 +5,18 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DataProdiController extends Controller
 {
     public function index()
     {
-        $data['title_page'] = 'Data Prodi';
-        $data['username'] = 'Administrator';
-        $data['title'] = 'Data Prodi';
-        $data['prodis'] = Prodi::latest()->get();
+        $title_page = 'Data Prodi';
+        $username = Auth::user();
+        $title = 'Data Prodi';
+        $prodis = Prodi::latest()->get();
 
-        return view('admin.menus.dataProdi.index', $data);
+        return view('admin.menus.dataProdi.index', compact('title_page', 'username', 'title', 'prodis'));
     }
 
     public function store(Request $request)

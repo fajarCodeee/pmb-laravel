@@ -3,16 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DataSoalController extends Controller
 {
     public function index()
     {
-        $data['title_page'] = 'Data Soal';
-        $data['username'] = 'Administrator';
-        $data['title'] = 'Data Soal';
+        $title_page = 'Data Soal';
+        $username = Auth::user();
+        $title = 'Data Soal';
 
-        return view('admin.menus.dataSoal.index', $data);
+        return view('admin.menus.dataSoal.index', compact('title_page', 'username', 'title'));
     }
 }

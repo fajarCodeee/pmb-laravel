@@ -5,17 +5,18 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\MahasiswaBaru;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MahasiswaController extends Controller
 {
     public function index()
     {
-        $data['title_page'] = 'Data Mahasiswa Baru';
-        $data['username'] = 'Administrator';
-        $data['title'] = 'Daftar Mahasiswa';
+        $title_page = 'Data Mahasiswa Baru';
+        $username = Auth::user();
+        $title = 'Daftar Mahasiswa';
 
-        $data['mahasiswa'] = MahasiswaBaru::all();
+        $mahasiswa = MahasiswaBaru::all();
 
-        return view('admin.menus.mahasiswa.index', $data);
+        return view('admin.menus.mahasiswa.index', compact('title_page', 'username', 'title', 'mahasiswa'));
     }
 }

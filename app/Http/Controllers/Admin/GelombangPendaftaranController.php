@@ -5,17 +5,18 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Gelombang;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GelombangPendaftaranController extends Controller
 {
     public function index()
     {
-        $data['title_page'] = 'Gelombang Pendaftaran';
-        $data['username'] = 'Administrator';
-        $data['title'] = 'Gelombang Pendaftaran';
-        $data['gelombang'] = Gelombang::latest()->get();
+        $title_page = 'Gelombang Pendaftaran';
+        $username = Auth::user();
+        $title = 'Gelombang Pendaftaran';
+        $gelombang = Gelombang::latest()->get();
 
-        return view('admin.menus.gelombangPendaftaran.index', $data);
+        return view('admin.menus.gelombangPendaftaran.index', compact('title_page', 'username', 'title', 'gelombang'));
     }
 
     public function show($id)

@@ -41,7 +41,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-                <h4 class="modal-title">Gelombang Pendaftaran</h4>
+                <h4 class="modal-title">Edit Kelas</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

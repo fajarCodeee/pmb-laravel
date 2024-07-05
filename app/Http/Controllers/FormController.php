@@ -7,7 +7,9 @@ use App\Http\Requests\BerkasRequest;
 use App\Http\Requests\DataDiriRequest;
 use App\Http\Requests\OrtuRequest;
 use App\Http\Requests\ProdiRequest;
+use App\Mail\SendLinkTransfer;
 use App\Models\Agama;
+use App\Models\DataAdminstrasiPMB;
 use App\Models\FormPendaftaran;
 use App\Models\JenisTinggal;
 use App\Models\Kelas;
@@ -19,6 +21,7 @@ use App\Models\TransaksiPendaftaran;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 
 class FormController extends Controller
 {
@@ -163,56 +166,67 @@ class FormController extends Controller
         foreach ($fields as $field) {
             if ($request->hasFile($field)) {
                 $file = $request->file($field);
-                $filename = time() . '-' . rand(1, 100000);
+                $filename = time() . '_' . $field . '.' . $file->getClientOriginalExtension();
                 $path = $file->storeAs('uploads', $filename, 'public');
                 $uploadedFiles[$field] = $path;
             }
         }
 
-        $pmb->kk = $uploadedFiles['kk'] ?? null;
         $pmb->ktp = $uploadedFiles['ktp'] ?? null;
+        $pmb->kk = $uploadedFiles['kk'] ?? null;
         $pmb->ijazah = $uploadedFiles['ijazah'] ?? null;
         $pmb->foto = $uploadedFiles['foto'] ?? null;
         $pmb->akte = $uploadedFiles['akte'] ?? null;
         $pmb->save();
 
         $formId = $pmb->id;
+        $mailData = [
+            'title' => 'Selamat Pendaftaran Anda Berhasil!',
+            'id' => $formId,
+            'bank' => DataAdminstrasiPMB::where('jenis_administrasi', 'Pendaftaran')->get(),
+            'biayaPendaftaran' => DataAdminstrasiPMB::select('jumlah_administrasi')->latest()->first()
+        ];
 
-        $request->session()->forget('pmb');
+        Mail::to($pmb->email)->send(new SendLinkTransfer($mailData));
 
         return redirect()->to('/form/p/' . $formId);
     }
 
     public function showForm($id)
     {
-        // $dataResult = FormPendaftaran::findOrFail($id);
         $dataResult = FormPendaftaran::with(['prodi', 'kelas'])->findOrFail($id);
         $agama = Agama::where('value', $dataResult->agama)->get();
-        // dd(Agama::find($dataResult->agama));
-        // dd(Agama::where('value', $dataResult->agama)->get());
-        // die;
 
-        $biayaPendaftaran = 'xxxxxx';
-        $biayaRegistrasi = 'xxxxxx';
+        $bank = DataAdminstrasiPMB::where('jenis_administrasi', 'Pendaftaran')->get();
+        $biayaPendaftaran = DataAdminstrasiPMB::select('jumlah_administrasi')->latest()->first();
+        $biayaRegistrasi = DataAdminstrasiPMB::where('jenis_administrasi', 'Registrasi')->get();
 
-        return view('formPendaftaran.result', compact('dataResult', 'agama', 'biayaPendaftaran', 'biayaRegistrasi'));
+        return view('formPendaftaran.result', compact('dataResult', 'agama', 'biayaPendaftaran', 'bank'));
     }
 
     public function postTf(Request $request)
     {
-        $request->validate([
+        $validate = $request->validate([
             'bukti_tf' => 'required',
             'form_id' => 'required'
         ], [
             'bukti_tf.required' => 'Silahkan lampirkan bukti transfer dahulu!'
         ]);
 
-        $insert = TransaksiPendaftaran::create([
-            'form_id' => $request->form_id,
-            'nama_cmb' => $request->nama_cmb,
-            'bukti_tf' => $request->bukti_tf
-        ]);
+        if ($validate) {
+            TransaksiPendaftaran::create([
+                'form_id' => $request->form_id,
+                'nama_cmb' => $request->nama_cmb,
+                'bukti_tf' => $request->bukti_tf
+            ]);
+        }
 
-        return redirect()->to('/');
+        return redirect()->to('/form/pendaftaran/pesan');
+    }
+
+
+    public function message()
+    {
+        return view('formPendaftaran.message');
     }
 }

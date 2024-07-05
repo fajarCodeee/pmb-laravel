@@ -9,7 +9,7 @@ class JawabanCbt extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id_soal_cbt', 'jawaban', 'jawaban_benar'];
+    protected $fillable = ['id_soal_cbt', 'jawaban', 'is_correct'];
 
     public function soalCbt()
     {

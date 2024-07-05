@@ -5,17 +5,18 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Kelas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DataKelasController extends Controller
 {
     public function index()
     {
-        $data['title_page'] = 'Data Kelas';
-        $data['username'] = 'Administrator';
-        $data['title'] = 'Data Kelas';
-        $data['kelas'] = Kelas::latest()->get();
+        $title_page = 'Data Kelas';
+        $username = Auth::user();
+        $title = 'Data Kelas';
+        $kelas = Kelas::latest()->get();
 
-        return view('admin.menus.dataKelas.index', $data);
+        return view('admin.menus.dataKelas.index', compact('title_page', 'username', 'title', 'kelas'));
     }
 
     public function store(Request $request)

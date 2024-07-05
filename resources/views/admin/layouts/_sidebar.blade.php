@@ -15,7 +15,7 @@
                     alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">{{ $username }}</a>
+                <a href="#" class="d-block text-capitalize">{{ $username->username }}</a>
             </div>
         </div>
         <!-- Sidebar Menu -->
@@ -76,14 +76,19 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ url('/admin/data-rekening') }}"
+                        class="nav-link <?= $title == 'Data Rekening' ? 'active' : '' ?>">
+                        <i class="nav-icon fas fa-university"></i>
+                        <p>
+                            Informasi Administrasi
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-header">CBT</li>
 
-                <li
-                    class="nav-item @if ($title == 'Data Ujian') menu-open
-                    @elseif($title == 'Data Soal') menu-open @elseif($title == 'Data Jawaban') menu-open @else @endif">
-                    <a href="#"
-                        class="nav-link @if ($title == 'Data Ujian') active
-                    @elseif($title == 'Data Soal') active @elseif($title == 'Data Jawaban') active @else @endif">
+                <li class="nav-item @if (in_array($title, ['Statistik CBT', 'Data Peserta', 'Kelola Ujian CBT'])) menu-open @endif">
+                    <a href="#" class="nav-link @if (in_array($title, ['Statistik CBT', 'Data Peserta', 'Kelola Ujian CBT'])) active @endif">
                         <i class="nav-icon fas fa-book-reader"></i>
                         <p>
                             Informasi CBT
@@ -93,29 +98,23 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('statistik.cbt') }}"
-                                class="nav-link <?= $title == 'Statistik CBT' ? 'active' : '' ?>">
+                                class="nav-link {{ $title == 'Statistik CBT' ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>
-                                    Statistik CBT
-                                </p>
+                                <p>Statistik CBT</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('data.peserta') }}"
-                                class="nav-link <?= $title == 'Data Peserta' ? 'active' : '' ?>">
+                                class="nav-link {{ $title == 'Data Peserta' ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>
-                                    Data Peserta
-                                </p>
+                                <p>Data Peserta</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('kelola.ujian.cbt') }}"
-                                class="nav-link <?= $title == 'Kelola Ujian CBT' ? 'active' : '' ?>">
+                                class="nav-link {{ $title == 'Kelola Ujian CBT' ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>
-                                    Kelola Ujian CBT
-                                </p>
+                                <p>Kelola Ujian CBT</p>
                             </a>
                         </li>
                     </ul>

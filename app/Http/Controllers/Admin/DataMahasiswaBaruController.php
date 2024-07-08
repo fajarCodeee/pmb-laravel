@@ -8,7 +8,6 @@ use App\Models\FormPendaftaran;
 use App\Models\MahasiswaBaru;
 use App\Models\Prodi;
 use App\Models\User;
-use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -24,7 +23,7 @@ class DataMahasiswaBaruController extends Controller
         $username = Auth::user();
         $title = 'Data Mahasiswa';
 
-        $mahasiswa = FormPendaftaran::latest()->get();
+        $mahasiswa = FormPendaftaran::latest()->paginate(25);
 
         return view('admin.menus.dataMahasiswaBaru.index', compact('title_page', 'username', 'title', 'mahasiswa'));
     }
@@ -70,14 +69,24 @@ class DataMahasiswaBaruController extends Controller
                 return response()->json(['message' => 'Gagal mengupdate status'], 500);
             }
 
-            // buat akun CBT
-            $pass = $this->generatePass();
-            $createAccount = User::create([
-                'username' => $this->username($data->namaLengkap),
-                'password' => Hash::make($pass),
-                'email' => $data->email,
-                'level' => 'peserta_cbt'
-            ]);
+            $mahasiswa = new MahasiswaBaru();
+            $mahasiswa->fill($data->toArray());
+            $mahasiswa->nim = 0;
+            $save = $mahasiswa->save();
+
+            if ($save) {
+                // buat akun CBT
+                $pass = $this->generatePass();
+                $createAccount = User::create([
+                    'username' => $this->username($mahasiswa->namaLengkap . '' . rand(0, 5)),
+                    'password' => Hash::make($pass),
+                    'email' => $mahasiswa->email,
+                    'level' => 'peserta_cbt'
+                ]);
+            } else {
+                DB::rollBack();
+                return response()->json(['message' => 'Gagal menyimpan data mahasiswa baru'], 500);
+            }
 
             if (!$createAccount) {
                 // Rollback transaksi jika penyimpanan mahasiswa gagal
@@ -93,7 +102,8 @@ class DataMahasiswaBaruController extends Controller
             $mailData = [
                 'username' => $user->email,
                 'password' => $pass, // Hanya mengirim password, bukan password hash
-                'link_cbt' => url('/cbt/home')
+                // 'link_cbt' => url('/cbt/home')
+                'link_cbt' => '(menyusul)'
             ];
 
             Mail::to($data->email)->send(new NotifByEmail($mailData));

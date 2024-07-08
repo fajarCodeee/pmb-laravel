@@ -213,11 +213,21 @@ class FormController extends Controller
             'bukti_tf.required' => 'Silahkan lampirkan bukti transfer dahulu!'
         ]);
 
+        $uploadedFiles = [];
+
+        if ($request->hasFile('bukti_tf')) {
+            $file = $request->file('bukti_tf');
+            $filename = time() . '_bukti_tf' . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('uploads', $filename, 'public');
+            $uploadedFiles['bukti_tf'] = $path;
+        }
+
+
         if ($validate) {
             TransaksiPendaftaran::create([
                 'form_id' => $request->form_id,
                 'nama_cmb' => $request->nama_cmb,
-                'bukti_tf' => $request->bukti_tf
+                'bukti_tf' => $uploadedFiles['bukti_tf']
             ]);
         }
 

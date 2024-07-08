@@ -55,11 +55,17 @@ Route::group(['middleware' => ['auth']], function () {
 
     // admin
     Route::group(['middleware' => ['cek_login:admin']], function () {
+        Route::get('/admin', [HomeController::class, 'index'])->name('admin.panel.dashboard');
         Route::get('/admin/home', [HomeController::class, 'index'])->name('admin.panel.dashboard');
-        // Gelombang Pendafaran
+
         Route::get('/admin/data-mahasiswa-baru', [DataMahasiswaBaruController::class, 'index']);
         Route::get('/admin/daftar-mahasiswa', [MahasiswaController::class, 'index']);
+        // export
+        Route::get('/admin/daftar-mahasiswa/export', [MahasiswaController::class, 'export']);
+
+        // Gelombang Pendafaran
         Route::resource('/admin/gelombang-pendaftaran', GelombangPendaftaranController::class);
+
         // Data Kelas
         Route::resource('admin/data-kelas', DataKelasController::class);
         Route::resource('admin/data-program-studi', DataProdiController::class);

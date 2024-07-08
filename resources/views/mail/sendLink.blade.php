@@ -16,7 +16,7 @@
         Untuk menyelesaikan administrasi, silahakan upload bukti pembayaran administrasi pendaftaran sebesar <b>Rp.
             {{ $mailData['biayaPendaftaran']->jumlah_administrasi }}</b> ke salah satu nomer rekenik berikut : </p>
     <ul>
-        @foreach ($mail['bank'] as $bank)
+        @foreach ($mailData['bank'] as $bank)
             <li>{!! '<b>' . $bank->nama_bank . '</b> - ' . $bank->nomer_rekening !!}</li>
         @endforeach
     </ul>

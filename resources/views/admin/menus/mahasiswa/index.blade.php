@@ -10,7 +10,7 @@
                         <h3 class="card-title">Data Calon Mahasiswa Baru</h3>
 
                         <div class="card-tools">
-                            <div class="input-group input-group-sm" style="width: 150px;">
+                            {{-- <div class="input-group input-group-sm" style="width: 150px;">
                                 <input type="text" name="table_search" class="form-control float-right"
                                     placeholder="Search">
 
@@ -19,7 +19,9 @@
                                         <i class="fas fa-search"></i>
                                     </button>
                                 </div>
-                            </div>
+                            </div> --}}
+                            <a class="btn btn-sm btn-success" href="{{ url('/admin/daftar-mahasiswa/export') }}">Export
+                                XLSX</a>
                         </div>
                     </div>
                     <!-- /.card-header -->
@@ -70,6 +72,9 @@
                         </table>
                     </div>
                     <!-- /.card-body -->
+                </div>
+                <div class="d-flex justify-content-end">
+                    {{ $mahasiswa->links() }}
                 </div>
             </div>
         </div>

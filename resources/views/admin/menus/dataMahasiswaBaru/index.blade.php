@@ -1,8 +1,6 @@
 @extends('admin.layouts.template')
-
 @section('content')
     <div class="container-fluid">
-        {{-- {{ dd($mahasiswa) }} --}}
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -41,12 +39,8 @@
                             <tbody>
                                 @forelse ($mahasiswa as $mhs)
                                     <tr>
-                                        <td>
-                                            {{ $mhs->namaLengkap }}
-                                        </td>
-                                        <td>
-                                            {{ $mhs->nik }}
-                                        </td>
+                                        <td>{{ $mhs->namaLengkap }}</td>
+                                        <td>{{ $mhs->nik }}</td>
                                         <td>{{ $mhs->nisn }}</td>
                                         <td>{{ $mhs->jalan . ', ' . $mhs->kelurahan }}</td>
                                         <td>{{ $mhs->tanggalLahir }}</td>
@@ -61,9 +55,10 @@
                                                 <span class="badge badge-danger">DiTolak</span>
                                             @endif
                                         </td>
-                                        <td><button type="button" class="btn btn-warning btn-sm" id="showDataMahasiswa"
-                                                data-id="{{ $mhs->id }}">Cek
-                                                Data</button> <button type="button" class="btn btn-sm btn-success accept"
+                                        <td>
+                                            <button type="button" class="btn btn-warning btn-sm" id="showDataMahasiswa"
+                                                data-id="{{ $mhs->id }}">Cek Data</button>
+                                            <button type="button" class="btn btn-sm btn-success accept"
                                                 data-id="{{ $mhs->id }}"
                                                 {{ $mhs->status == 1 || $mhs->status == -1 ? 'disabled' : '' }}>Terima</button>
                                             <button type="button" class="btn btn-sm btn-danger reject"
@@ -72,17 +67,24 @@
                                         </td>
                                     </tr>
                                 @empty
+                                    <tr>
+                                        <td colspan="9">Tidak ada data mahasiswa.</td>
+                                    </tr>
                                 @endforelse
                             </tbody>
                         </table>
                     </div>
                     <!-- /.card-body -->
                 </div>
+                <div class="d-flex justify-content-end">
+                    {{ $mahasiswa->links() }}
+                </div>
             </div>
         </div>
     </div>
-    @include('admin.menus.dataMahasiswaBaru._modal');
+    @include('admin.menus.dataMahasiswaBaru._modal')
 @endsection
+
 @section('scripts')
     <script>
         $(document).ready(function() {

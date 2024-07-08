@@ -36,9 +36,9 @@
 
 <script>
     $(document).ready(function() {
+
         $(document).on('click', '.accept', function() {
             // Menampilkan SweetAlert untuk konfirmasi
-            // console.log($(this).data('id'));
             Swal.fire({
                 title: 'Apakah Anda yakin?',
                 text: "Anda akan melakukan perubahan pada data ini!",
@@ -50,8 +50,16 @@
                 cancelButtonText: 'Batal'
             }).then((result) => {
                 if (result.isConfirmed) {
+                    // Menampilkan SweetAlert loading
+                    Swal.fire({
+                        title: 'Memproses...',
+                        text: 'Mohon tunggu sebentar',
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
 
-                    // console.log('User chose to update data.');
                     var dataId = $(this).data('id');
 
                     $.ajax({
@@ -61,8 +69,10 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         success: function(response) {
-                            // console.log(response.message);
+                            // Menutup SweetAlert loading
+                            Swal.close();
 
+                            // Menampilkan SweetAlert sukses
                             Swal.fire({
                                 title: 'Berhasil!',
                                 text: response.message,
@@ -76,6 +86,10 @@
                             });
                         },
                         error: function(xhr, status, error) {
+                            // Menutup SweetAlert loading
+                            console.log(error);
+                            Swal.close();
+
                             console.error('Error:', error);
                             Swal.fire('Oops...',
                                 'Terjadi kesalahan saat melakukan perubahan.',
@@ -85,6 +99,7 @@
                 }
             });
         });
+
 
         $(document).on('click', '.reject', function() {
             // Menampilkan SweetAlert untuk konfirmasi
@@ -100,6 +115,15 @@
                 cancelButtonText: 'Batal'
             }).then((result) => {
                 if (result.isConfirmed) {
+
+                    Swal.fire({
+                        title: 'Memproses...',
+                        text: 'Mohon tunggu sebentar',
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
 
                     // console.log('User chose to update data.');
                     var dataId = $(this).data('id');

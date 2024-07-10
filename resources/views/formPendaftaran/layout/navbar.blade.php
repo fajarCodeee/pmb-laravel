@@ -3,7 +3,8 @@
         <a class="navbar-brand" href="#">
             <img src="{{ asset('adminlte/dist/img/logo-polsa.png') }}" width="30" height="30"
                 class="d-inline-block align-top" alt="Logo Polsa">
-            <b>POLSA</b>
+            <img src="{{ asset('adminlte/dist/img/logo.png') }}" alt="" width="150">
+            {{-- <span class="font-lighter text-uppercase">politeknik sawunggalih aji</span> --}}
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

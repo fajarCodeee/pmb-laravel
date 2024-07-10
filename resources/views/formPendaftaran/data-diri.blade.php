@@ -25,7 +25,22 @@
                 {{-- nis --}}
                 <x-text-input name="nik" label="NIK" require="true" value="{{ $pmb->nik ?? old('nik') }}" />
                 {{-- nisn --}}
-                <x-text-input name="nisn" label="NISN" require="true" value="{{ $pmb->nisn ?? old('nisn') }}" />
+                {{-- <x-text-input name="nisn" label="NISN" require="true" value="{{ $pmb->nisn ?? old('nisn') }}" /> --}}
+                <div class="form-group">
+                    <label for="nisn">
+                        NISN <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" name="nisn" id="nisn" value="{{ $pmb->nisn ?? old('nisn') }}"
+                        class="form-control @if ($errors->has('nisn')) is-invalid @endif" placeholder="NISN">
+                    <span class="font-italic font-weight-lighter" style="font-size: 14px">Cek NISN : <a
+                            href="https://nisn.data.kemdikbud.go.id/index.php/Cindex/formcaribynama" target="_blank"
+                            rel="noopener noreferrer">Disini</a></span>
+                    <span class="invalid-feedback text-uppercase font-italic">
+                        @if ($errors->has('nisn'))
+                            {{ $errors->first('nisn') }}
+                        @endif
+                    </span>
+                </div>
                 {{-- npwn --}}
                 <x-text-input name="npwp" label="NPWP" value="{{ $pmb->npwp ?? old('npwp') }}" />
                 {{-- nisn --}}

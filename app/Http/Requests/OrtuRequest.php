@@ -23,7 +23,7 @@ class OrtuRequest extends FormRequest
     {
         return [
             // ayah
-            'nikAyah' => 'required',
+            'nikAyah' => 'required|digits:16|numeric',
             'namaAyah' => 'required',
             'tempatLahirAyah' => 'required',
             'tanggalLahirAyah' => 'required',
@@ -32,7 +32,7 @@ class OrtuRequest extends FormRequest
             'penghasilanAyah' => 'required',
 
             // ibu
-            'nikIbu' => 'required',
+            'nikIbu' => 'required|digits:16|numeric',
             'namaIbu' => 'required',
             'tempatLahirIbu' => 'required',
             'tanggalLahirIbu' => 'required',
@@ -47,21 +47,25 @@ class OrtuRequest extends FormRequest
         return [
             // ayah
             'nikAyah.required' => 'Kolom :attribute Wajib diisi!',
+            'nikAyah.digits' => 'NIK terdiri dari 16 digit angka!',
+            'nikAyah.numeric' => 'NIK hanya berupa digit angka!',
             'namaAyah.required' => 'Kolom :attribute Wajib diisi!',
             'tempatLahirAyah.required' => 'Kolom :attribute Wajib diisi!',
             'tanggalLahirAyah.required' => 'Kolom :attribute Wajib diisi!',
-            'pendidikanAyah.required' => 'Kolom :attribute Wajib diisi!',
-            'pekerjaanAyah.required' => 'Kolom :attribute Wajib diisi!',
-            'penghasilanAyah.required' => 'Kolom :attribute Wajib diisi!',
+            'pendidikanAyah.required' => 'Silahkan pilih salah satu!',
+            'pekerjaanAyah.required' => 'Silahkan pilih salah satu!',
+            'penghasilanAyah.required' => 'Silahkan pilih salah satu!',
 
             // ibu
             'nikIbu.required' => 'Kolom :attribute Wajib diisi!',
+            'nikIbu.digits' => 'NIK terdiri dari 16 digit angka!',
+            'nikIbu.numeric' => 'NIK hanya berupa digit angka!',
             'namaIbu.required' => 'Kolom :attribute Wajib diisi!',
             'tempatLahirIbu.required' => 'Kolom :attribute Wajib diisi!',
             'tanggalLahirIbu.required' => 'Kolom :attribute Wajib diisi!',
-            'pendidikanIbu.required' => 'Kolom :attribute Wajib diisi!',
-            'pekerjaanIbu.required' => 'Kolom :attribute Wajib diisi!',
-            'penghasilanIbu.required' => 'Kolom :attribute Wajib diisi!',
+            'pendidikanIbu.required' => 'Silahkan pilih salah satu!',
+            'pekerjaanIbu.required' => 'Silahkan pilih salah satu!',
+            'penghasilanIbu.required' => 'Silahkan pilih salah satu!',
 
         ];
     }

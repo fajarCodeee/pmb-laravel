@@ -7,7 +7,7 @@
         class="form-control @if ($errors->has($name)) is-invalid @endif">
         <option value="" selected> --- Pilih {{ $label }} ---</option>
         @foreach ($options as $value => $item)
-            <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>
+            <option value="{{ $value }}" {{ old($name, $selected) == $value ? 'selected' : '' }}>
                 {{ $item }}
             </option>
         @endforeach

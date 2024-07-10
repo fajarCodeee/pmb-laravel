@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <title>PMB | {{ $title }}</title>
-<link href="https://codeanddeploy.com/theme/landing/img/favicon.png" rel="icon">
+<link href="{{ asset('adminlte/dist/img/logo-polsa.png') }}" rel="icon">
 
 <!-- Google Font: Source Sans Pro -->
 <!-- Google Font: Source Sans Pro -->

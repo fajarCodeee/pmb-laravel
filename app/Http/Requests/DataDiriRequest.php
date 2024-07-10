@@ -27,25 +27,28 @@ class DataDiriRequest extends FormRequest
             'tanggalLahir' => 'required',
             'jenisKelamin' => 'required',
             'agama' => 'required',
-            'nik' => 'required',
-            'nisn' => 'required',
+            'nik' => 'required|digits:16',
+            'nisn' => 'required|min:10',
             'nomerWhatsapp' => 'required',
-            'email' => 'required',
+            'email' => 'required|email',
         ];
     }
 
     public function messages()
     {
         return [
-            'namaLengkap.required' => 'Kolom :attribute Wajib diisi!',
-            'tempatLahir.required' => 'Kolom :attribute Wajib diisi!',
-            'tanggalLahir.required' => 'Kolom :attribute Wajib diisi!',
-            'jenisKelamin.required' => 'Kolom :attribute Wajib diisi!',
-            'agama.required' => 'Kolom :attribute Wajib diisi!',
-            'nik.required' => 'Kolom :attribute Wajib diisi!',
-            'nisn.required' => 'Kolom :attribute Wajib diisi!',
-            'nomerWhatsapp.required' => 'Kolom :attribute Wajib diisi!',
-            'email.required' => 'Kolom :attribute Wajib diisi!',
+            'namaLengkap.required' => ':attribute Wajib diisi!',
+            'tempatLahir.required' => ':attribute Wajib diisi!',
+            'tanggalLahir.required' => ':attribute Wajib diisi!',
+            'jenisKelamin.required' => 'Silahkan pilih salah satu!',
+            'agama.required' => 'Silahkan pilih salah satu!',
+            'nik.required' => 'NIK Wajib diisi!',
+            'nik.digits' => 'NIK terdiri dari 16 digit angka!',
+            'nisn.required' => ':attribute Wajib diisi!',
+            'nisn.min' => ':attribute terdiri dari 10 digit!',
+            'nomerWhatsapp.required' => ':attribute Wajib diisi!',
+            'email.required' => ':attribute Wajib diisi!',
+            'email.email' => ':attribute yang dimasukan tidak valid!',
         ];
     }
 }

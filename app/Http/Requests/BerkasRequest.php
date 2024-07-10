@@ -34,23 +34,23 @@ class BerkasRequest extends FormRequest
     {
         return [
             'ktp.required' => 'KTP wajib diunggah.',
-            'ktp.mimes' => 'KTP harus berupa file dengan format: png, jpg, jpeg, atau pdf.',
+            'ktp.mimes' => 'KTP harus berupa file dengan format: :values',
             'ktp.max' => 'KTP tidak boleh lebih dari 2MB.',
 
             'kk.required' => 'KK wajib diunggah.',
-            'kk.mimes' => 'KK harus berupa file dengan format: png, jpg, jpeg, atau pdf.',
+            'kk.mimes' => 'KK harus berupa file dengan format: :values',
             'kk.max' => 'KK tidak boleh lebih dari 2MB.',
 
             'ijazah.required' => 'Ijazah wajib diunggah.',
-            'ijazah.mimes' => 'Ijazah harus berupa file dengan format: png, jpg, jpeg, atau pdf.',
+            'ijazah.mimes' => 'Ijazah harus berupa file dengan format: :values',
             'ijazah.max' => 'Ijazah tidak boleh lebih dari 2MB.',
 
             'foto.required' => 'Foto wajib diunggah.',
-            'foto.mimes' => 'Foto harus berupa file dengan format: png, jpg, jpeg, atau pdf.',
+            'foto.mimes' => 'Foto harus berupa file dengan format: :values',
             'foto.max' => 'Foto tidak boleh lebih dari 2MB.',
 
             'akte.required' => 'Akte wajib diunggah.',
-            'akte.mimes' => 'Akte harus berupa file dengan format: png, jpg, jpeg, atau pdf.',
+            'akte.mimes' => 'Akte harus berupa file dengan format: :values',
             'akte.max' => 'Akte tidak boleh lebih dari 2MB.',
         ];
     }

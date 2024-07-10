@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link href="https://codeanddeploy.com/theme/landing/img/favicon.png" rel="icon">
+    <link href="{{ asset('adminlte/dist/img/logo-polsa.png') }}" rel="icon">
 
     <!-- Google Font: Source Sans Pro -->
     <!-- Google Font: Source Sans Pro -->

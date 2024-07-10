@@ -22,6 +22,9 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <!-- /.login-logo -->
+        <div class="text-center w-100 mb-4">
+            <img src="{{ asset('adminlte/dist/img/logo.png') }}" alt="" width="300">
+        </div>
         <div class="card card-outline card-primary shadow">
             <div class="card-header text-center">
                 <a href="/" class="h1 text-decoration-none"><b>PMB</b>
@@ -54,10 +57,8 @@
                     <div class="row">
                         <!-- /.col -->
                         <div class="col-md-12">
-                            <p class="mb-1">
-                                <a href="#" class="text-capitalize">lupa password?</a>
-                            </p>
-                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+
+                            <button type="submit" class="btn btn-primary btn-block">Login</button>
                         </div>
                         <!-- /.col -->
                     </div>

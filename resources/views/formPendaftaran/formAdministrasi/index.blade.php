@@ -24,25 +24,29 @@
                             <label for="ktp"> Upload KTP <span class="text-danger">*</span></label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="ktp" name="ktp">
+                                    <input type="file"
+                                        class="custom-file-input @if ($errors->has('ktp')) is-invalid @endif"
+                                        id="ktp" value="{{ old('ktp') }}" name="ktp">
                                     <label class="custom-file-label" for="ktp"> Upload KTP</label>
                                 </div>
                             </div>
-                            @if ($errors->has('ktp'))
+                            {{-- @if ($errors->has('ktp'))
                                 <span class="text-danger">{{ $errors->first('ktp') }}</span>
-                            @endif
+                            @endif --}}
                         </div>
                         <div class="form-group">
                             <label for="kk"> Upload KK <span class="text-danger">*</span></label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="kk" name="kk">
+                                    <input type="file"
+                                        class="custom-file-input @if ($errors->has('kk')) is-invalid @endif"
+                                        id="kk" value="{{ old('kk') }}" name="kk">
                                     <label class="custom-file-label" for="kk"> Upload KK</label>
                                 </div>
                             </div>
-                            @if ($errors->has('kk'))
+                            {{-- @if ($errors->has('kk'))
                                 <span class="text-danger">{{ $errors->first('kk') }}</span>
-                            @endif
+                            @endif --}}
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -50,25 +54,29 @@
                             <label for="ijazah"> Upload Ijazah <span class="text-danger">*</span></label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="ijazah" name="ijazah">
+                                    <input type="file"
+                                        class="custom-file-input @if ($errors->has('ijazah')) is-invalid @endif"
+                                        id="ijazah" value="{{ old('ijazah') }}" name="ijazah">
                                     <label class="custom-file-label" for="ijazah"> Upload Ijazah</label>
                                 </div>
                             </div>
-                            @if ($errors->has('ijazah'))
+                            {{-- @if ($errors->has('ijazah'))
                                 <span class="text-danger">{{ $errors->first('ijazah') }}</span>
-                            @endif
+                            @endif --}}
                         </div>
                         <div class="form-group">
                             <label for="foto"> Upload Foto 3x4 <span class="text-danger">*</span></label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="foto" name="foto">
+                                    <input type="file"
+                                        class="custom-file-input @if ($errors->has('foto')) is-invalid @endif"
+                                        id="foto" value="{{ old('foto') }}" name="foto">
                                     <label class="custom-file-label" for="foto"> Upload Foto 3x4</label>
                                 </div>
                             </div>
-                            @if ($errors->has('foto'))
+                            {{-- @if ($errors->has('foto'))
                                 <span class="text-danger">{{ $errors->first('foto') }}</span>
-                            @endif
+                            @endif --}}
                         </div>
                     </div>
                 </div>
@@ -76,16 +84,18 @@
                     <label for="akte"> Upload Akte Kelahiran <span class="text-danger">*</span></label>
                     <div class="input-group">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="akte" name="akte">
+                            <input type="file"
+                                class="custom-file-input @if ($errors->has('akte')) is-invalid @endif" id="akte"
+                                value="{{ old('akte') }}" name="akte">
                             <label class="custom-file-label" for="akte"> Upload Akte Kelahiran</label>
                         </div>
                     </div>
-                    @if ($errors->has('akte'))
+                    {{-- @if ($errors->has('akte'))
                         <span class="text-danger">{{ $errors->first('akte') }}</span>
-                    @endif
+                    @endif --}}
                 </div>
                 <i style="font-size: 14px">Catatan: tanda (<span class="text-danger font-weight-bolder">*</span>) wajib
-                    diisi!</i>
+                    diisi! Format file(.jpg, .jpeg, .png, .pdf) dengan. Ukuran file maks. 2MB</i>
 
                 {{-- btn next/previous --}}
                 <div class="d-flex mt-5 justify-content-between">

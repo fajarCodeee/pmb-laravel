@@ -29,8 +29,8 @@ class AlamatRequest extends FormRequest
             'kelurahan' => 'required',
             'dusun' => 'required',
             'jalan' => 'required',
-            'rt' => 'required',
-            'rw' => 'required',
+            'rt' => 'required|numeric',
+            'rw' => 'required|numeric',
             'jenisTinggal' => 'required',
             'kodePos' => 'required',
         ];
@@ -48,9 +48,11 @@ class AlamatRequest extends FormRequest
             'dusun.required' => 'Kolom :attribute Wajib diisi!',
             'jalan.required' => 'Kolom :attribute Wajib diisi!',
             'rt.required' => 'Kolom :attribute Wajib diisi!',
+            'rt.numeric' => 'Masukan 3 digit angka!',
             'rw.required' => 'Kolom :attribute Wajib diisi!',
+            'rw.numeric' => 'Masukan 3 digit angka!',
             'kodePos.required' => 'Kolom :attribute Wajib diisi!',
-            'jenisTinggal.required' => 'Kolom :attribute Wajib diisi!',
+            'jenisTinggal.required' => 'Silahkan pilih salah satu!',
         ];
     }
 }
